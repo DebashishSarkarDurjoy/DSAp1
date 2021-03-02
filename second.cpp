@@ -2,13 +2,15 @@
 #include <cstdlib>
 #include <time.h>
 #include <vector>
+#include <string>
 
 using namespace std;
 
 void showVector(vector<int> &nums);
 void initializeLoader(vector<int> &loader);
 void setVector(vector<int> &nums, vector<int> &loader, int &randCalls);
-void atOrigin(vector<int> &nums, int &randCalls);
+int atOrigin(vector<int> &nums);
+void vectorInfo(vector<int> &nums, vector<int> &loader, int randCalls);
 
 int main() {
   vector<int> nums, loader;
@@ -18,7 +20,9 @@ int main() {
   setVector(nums, loader, randCalls);
 
   showVector(nums);
-  atOrigin(nums, randCalls);
+  atOrigin(nums);
+
+  vectorInfo(nums, loader, randCalls);
 
   return 0;
 }
@@ -43,11 +47,22 @@ void setVector(vector<int> &nums, vector<int> &loader, int &randCalls) {
   }
 }
 
-void atOrigin(vector<int> &nums, int &randCalls) {
+int atOrigin(vector<int> &nums) {
   int total = 0;
   for (int i = 0; i < 10; i++) {
     if (nums[i] == i) total++;
   }
-  cout << "Total at original position: " << total << endl;
-  cout << "Total calls to random function: " << randCalls << endl;
+  return total;
+}
+
+void vectorInfo(vector<int> &nums, vector<int> &loader, int &randCalls) {
+  string vectorData = " ";
+  for (int i = 0; i < 10; i++) {
+    vectorData += to_string(nums[i]);
+    vectorData += " ";
+  }
+  vectorData += "unchanged: " + to_string(atOrigin(nums)) + " ";
+  vectorData += "random calls to rand(): " + to_string(randCalls);
+
+  cout << vectorData;
 }
