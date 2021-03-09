@@ -12,6 +12,7 @@ void atOrigin(vector<int> &nums, int &randCalls);
 
 int main() {
   vector<int> nums, loader;
+  srand(time(0));
   initializeLoader(loader);
 
   int randCalls = 0;
@@ -33,7 +34,7 @@ void showVector(vector<int> &nums) {
 }
 
 void setVector(vector<int> &nums, vector<int> &loader, int &randCalls) {
-  srand(time(0));
+
   int randIndex;
   for (int i = 0; i < 10; i++) {
     randIndex = rand() % loader.size();
